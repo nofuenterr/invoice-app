@@ -1,12 +1,50 @@
 @import 'tailwindcss';
 
+@font-face {
+	font-family: 'League Spartan';
+	src:
+		url('../assets/fonts/LeagueSpartan-Bold.woff2') format('woff2'),
+		url('../assets/fonts/LeagueSpartan-Bold.woff') format('woff');
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'League Spartan';
+	src:
+		url('../assets/fonts/LeagueSpartan-Medium.woff2') format('woff2'),
+		url('../assets/fonts/LeagueSpartan-Medium.woff') format('woff');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
 @theme {
+	--color-*: initial;
+	--color-01: hsl(252, 94%, 67%);
+	--color-02: hsl(252, 100%, 73%);
+	--color-03: hsl(233, 31%, 17%);
+	--color-04: hsl(233, 30%, 21%);
+	--color-05: hsl(231, 73%, 93%);
+	--color-06: hsl(231, 20%, 61%);
+	--color-07: hsl(231, 37%, 63%);
+	--color-08: hsl(228, 29%, 7%);
+	--color-09: hsl(0, 80%, 63%);
+	--color-10: hsl(0, 100%, 80%);
+	--color-11: hsl(240, 27%, 98%);
+	--color-12: hsl(233, 30%, 11%);
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-	font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+	font-family:
+		'League Spartan', system-ui, Avenir, Helvetica, Arial, sans-serif;
+	font-size: 0.8125rem; /* 13px */
+	font-weight: 500; /* medium */
+	letter-spacing: -0.00625em; /* -0.1px */
+	line-height: 15px;
 
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
@@ -16,5 +54,5 @@
 
 body {
 	min-width: 320px;
-	min-height: 100vh;
+	min-height: 100dvh;
 }
