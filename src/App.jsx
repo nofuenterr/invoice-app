@@ -1,5 +1,20 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import MainWrapper from './pages/MainWrapper';
+import Error from './pages/Error';
+import Invoices from './pages/Invoices';
+import ViewInvoice from './pages/ViewInvoice';
+
 function App() {
-	return <> </>;
+	return (
+		<Router>
+			<Routes>
+				<Route path="/" element={<MainWrapper />} errorElement={<Error />}>
+					<Route index={true} element={<Invoices />} />
+					<Route path="/:invoiceId" element={<ViewInvoice />} />
+				</Route>
+			</Routes>
+		</Router>
+	);
 }
 
 export default App;
