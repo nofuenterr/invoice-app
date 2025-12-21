@@ -10,7 +10,7 @@ function App() {
 			<Routes>
 				<Route path="/" element={<MainWrapper />} errorElement={<Error />}>
 					<Route index={true} element={<Invoices />} />
-					<Route path="/:invoiceId" element={<ViewInvoice />} />
+					<Route path="/invoice/:invoiceId" element={<ViewInvoice />} />
 				</Route>
 			</Routes>
 		</Router>
