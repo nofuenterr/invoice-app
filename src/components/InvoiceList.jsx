@@ -1,13 +1,10 @@
-import { useInvoiceStore } from '../stores/invoiceStore';
 import { Link } from 'react-router-dom';
 
-export default function InvoiceList() {
-	const invoiceList = useInvoiceStore((s) => s.invoiceList);
-
+export default function InvoiceList({ invoices }) {
 	return (
 		<div>
 			<ul>
-				{invoiceList.map((invoice) => {
+				{invoices.map((invoice) => {
 					return <Invoice key={invoice.id} invoice={invoice} />;
 				})}
 			</ul>

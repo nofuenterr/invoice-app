@@ -1,16 +1,13 @@
 import { Popover, Checkbox, Label } from 'radix-ui';
 import { CheckIcon } from '@radix-ui/react-icons';
-import { useInvoiceStore } from '../stores/invoiceStore';
 import InvoiceDialog from './InvoiceDialog';
 
-export default function InvoicesHeader() {
-	const invoiceList = useInvoiceStore((s) => s.invoiceList);
-
+export default function InvoicesHeader({ invoices, filters, handleFilters }) {
 	return (
 		<div>
 			<div>
 				<h1>Invoices</h1>
-				<p>{invoiceList.length} invoices</p>
+				<p>{invoices.length} invoices</p>
 			</div>
 			<Popover.Root>
 				<Popover.Trigger asChild>
@@ -18,10 +15,25 @@ export default function InvoicesHeader() {
 				</Popover.Trigger>
 				<Popover.Portal>
 					<Popover.Content sideOffset={5}>
-						<div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-							<CheckboxFilter id="draft" label="Draft" />
-							<CheckboxFilter id="pending" label="Pending" />
-							<CheckboxFilter id="paid" label="Paid" />
+						<div className="bg-02 flex flex-col gap-2.5">
+							<CheckboxFilter
+								id="draft"
+								label="Draft"
+								filters={filters}
+								handleFilters={handleFilters}
+							/>
+							<CheckboxFilter
+								id="pending"
+								label="Pending"
+								filters={filters}
+								handleFilters={handleFilters}
+							/>
+							<CheckboxFilter
+								id="paid"
+								label="Paid"
+								filters={filters}
+								handleFilters={handleFilters}
+							/>
 						</div>
 						<Popover.Arrow />
 					</Popover.Content>
@@ -37,10 +49,14 @@ export default function InvoicesHeader() {
 	);
 }
 
-function CheckboxFilter({ id, label }) {
+function CheckboxFilter({ id, label, filters, handleFilters }) {
 	return (
 		<fieldset>
-			<Checkbox.Root id={id}>
+			<Checkbox.Root
+				id={id}
+				checked={filters.includes(id)}
+				onCheckedChange={() => handleFilters(id)}
+			>
 				<Checkbox.Indicator>
 					<CheckIcon />
 				</Checkbox.Indicator>
