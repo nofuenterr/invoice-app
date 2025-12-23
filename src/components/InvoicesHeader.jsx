@@ -1,6 +1,7 @@
 import { Popover, Checkbox, Label } from 'radix-ui';
 import { CheckIcon } from '@radix-ui/react-icons';
 import { useInvoiceStore } from '../stores/invoiceStore';
+import InvoiceDialog from './InvoiceDialog';
 
 export default function InvoicesHeader() {
 	const invoiceList = useInvoiceStore((s) => s.invoiceList);
@@ -18,39 +19,33 @@ export default function InvoicesHeader() {
 				<Popover.Portal>
 					<Popover.Content sideOffset={5}>
 						<div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-							<fieldset>
-								<Checkbox.Root id="draft">
-									<Checkbox.Indicator>
-										<CheckIcon />
-									</Checkbox.Indicator>
-								</Checkbox.Root>
-								<Label.Root htmlFor="draft">Draft</Label.Root>
-							</fieldset>
-							<fieldset>
-								<Checkbox.Root id="pending">
-									<Checkbox.Indicator>
-										<CheckIcon />
-									</Checkbox.Indicator>
-								</Checkbox.Root>
-								<Label.Root htmlFor="pending">Pending</Label.Root>
-							</fieldset>
-							<fieldset>
-								<Checkbox.Root id="paid">
-									<Checkbox.Indicator>
-										<CheckIcon />
-									</Checkbox.Indicator>
-								</Checkbox.Root>
-								<Label.Root htmlFor="paid">Paid</Label.Root>
-							</fieldset>
+							<CheckboxFilter id="draft" label="Draft" />
+							<CheckboxFilter id="pending" label="Pending" />
+							<CheckboxFilter id="paid" label="Paid" />
 						</div>
 						<Popover.Arrow />
 					</Popover.Content>
 				</Popover.Portal>
 			</Popover.Root>
-			<button>
-				<div>+</div>
-				<span>New</span>
-			</button>
+			<InvoiceDialog action="addInvoice">
+				<button>
+					<div>+</div>
+					<span>New</span>
+				</button>
+			</InvoiceDialog>
 		</div>
+	);
+}
+
+function CheckboxFilter({ id, label }) {
+	return (
+		<fieldset>
+			<Checkbox.Root id={id}>
+				<Checkbox.Indicator>
+					<CheckIcon />
+				</Checkbox.Indicator>
+			</Checkbox.Root>
+			<Label.Root htmlFor={id}>{label}</Label.Root>
+		</fieldset>
 	);
 }

@@ -1,11 +1,11 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useInvoiceStore } from '../stores/invoiceStore';
+import InvoiceDialog from '../components/InvoiceDialog';
 
 export default function ViewInvoice() {
 	const params = useParams();
 	const navigate = useNavigate();
-	const getInvoice = useInvoiceStore((s) => s.getInvoice);
-	const invoice = getInvoice(params.invoiceId);
+	const invoice = useInvoiceStore((s) => s.getInvoice(params.invoiceId));
 
 	if (!invoice) return <div>Invoice not found</div>;
 
@@ -75,7 +75,7 @@ export default function ViewInvoice() {
 					<ul>
 						{invoice.items.map((item, index) => {
 							return (
-								<li key={index - item}>
+								<li key={`${index} - ${item}`}>
 									<div>
 										<p>{item.name}</p>
 										<p>
@@ -94,7 +94,9 @@ export default function ViewInvoice() {
 				</div>
 			</div>
 			<div>
-				<button>Edit</button>
+				<InvoiceDialog action="editInvoice" invoice={invoice}>
+					<button>Edit</button>
+				</InvoiceDialog>
 				<button>Delete</button>
 				<button>Mark as Paid</button>
 			</div>
