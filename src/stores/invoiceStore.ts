@@ -39,6 +39,7 @@ export interface InvoiceState {
 	addInvoice: (invoice: Invoice) => void;
 	editInvoice: (invoice: Invoice) => void;
 	deleteInvoice: (id: string) => void;
+	markInvoiceAsPaid: (id: string) => void;
 	getInvoice: (id: string) => Invoice;
 }
 
@@ -60,6 +61,11 @@ export const useInvoiceStore = create<InvoiceState>()(
 			deleteInvoice: (id: string) =>
 				set((state) => {
 					state.invoiceList = get().invoiceList.filter((iv) => iv.id !== id);
+				}),
+			markInvoiceAsPaid: (id: string) =>
+				set((state) => {
+					const index = state.invoiceList.findIndex((iv) => id === iv.id);
+					state.invoiceList[index].status = 'paid';
 				}),
 			getInvoice: (id: string) => {
 				return get().invoiceList.find((iv) => iv.id === id) as Invoice;

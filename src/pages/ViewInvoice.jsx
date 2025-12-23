@@ -6,6 +6,8 @@ export default function ViewInvoice() {
 	const params = useParams();
 	const navigate = useNavigate();
 	const invoice = useInvoiceStore((s) => s.getInvoice(params.invoiceId));
+	const deleteInvoice = useInvoiceStore((s) => s.deleteInvoice);
+	const markInvoiceAsPaid = useInvoiceStore((s) => s.markInvoiceAsPaid);
 
 	if (!invoice) return <div>Invoice not found</div>;
 
@@ -97,8 +99,17 @@ export default function ViewInvoice() {
 				<InvoiceDialog action="editInvoice" invoice={invoice}>
 					<button>Edit</button>
 				</InvoiceDialog>
-				<button>Delete</button>
-				<button>Mark as Paid</button>
+				<button
+					onClick={() => {
+						deleteInvoice(params.invoiceId);
+						navigate(-1);
+					}}
+				>
+					Delete
+				</button>
+				<button onClick={() => markInvoiceAsPaid(params.invoiceId)}>
+					Mark as Paid
+				</button>
 			</div>
 		</div>
 	);
