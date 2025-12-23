@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useInvoiceStore } from '../stores/invoiceStore';
 import InvoiceDialog from '../components/InvoiceDialog';
+import DeleteInvoiceAlert from '../components/DeleteInvoiceAlert';
 
 export default function ViewInvoice() {
 	const params = useParams();
@@ -99,14 +100,13 @@ export default function ViewInvoice() {
 				<InvoiceDialog action="editInvoice" invoice={invoice}>
 					<button>Edit</button>
 				</InvoiceDialog>
-				<button
-					onClick={() => {
-						deleteInvoice(params.invoiceId);
-						navigate(-1);
-					}}
+				<DeleteInvoiceAlert
+					id={params.invoiceId}
+					deleteInvoice={deleteInvoice}
+					navigate={navigate}
 				>
-					Delete
-				</button>
+					<button>Delete</button>
+				</DeleteInvoiceAlert>
 				<button onClick={() => markInvoiceAsPaid(params.invoiceId)}>
 					Mark as Paid
 				</button>
