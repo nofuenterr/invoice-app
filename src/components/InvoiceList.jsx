@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import ArrowRight from './ui/ArrowRight';
+import StatusBlock from './StatusBlock';
 
 export default function InvoiceList({ invoices }) {
 	return (
@@ -14,31 +15,6 @@ export default function InvoiceList({ invoices }) {
 }
 
 function Invoice({ invoice }) {
-	const statusBackground =
-		invoice.status === 'paid'
-			? 'bg-paid-light'
-			: invoice.status === 'pending'
-				? 'bg-pending-light'
-				: 'bg-draft-light dark:bg-05-light';
-	const statusIndicator =
-		invoice.status === 'paid'
-			? 'bg-paid'
-			: invoice.status === 'pending'
-				? 'bg-pending'
-				: 'bg-draft dark:bg-05';
-	const statusTextColor =
-		invoice.status === 'paid'
-			? 'text-paid'
-			: invoice.status === 'pending'
-				? 'text-pending'
-				: 'text-draft dark:text-05';
-	const statusText =
-		invoice.status === 'paid'
-			? 'Paid'
-			: invoice.status === 'pending'
-				? 'Pending'
-				: 'Draft';
-
 	return (
 		<li className="dark:border-08 hover:border-01 text-08 dark:bg-08 cursor-pointer rounded-lg border border-white bg-white p-6 md:py-4 lg:px-8 dark:text-white">
 			<Link
@@ -68,15 +44,7 @@ function Invoice({ invoice }) {
 						£ {invoice.total}
 					</p>
 				</div>
-				<div
-					className={
-						'flex w-[104px] items-center justify-center gap-2 justify-self-end rounded-md py-3.5 text-[15px] font-bold md:ml-5 ' +
-						statusBackground
-					}
-				>
-					<div className={'size-2 rounded-full ' + statusIndicator}></div>
-					<span className={statusTextColor}>{statusText}</span>
-				</div>
+				<StatusBlock status={invoice.status} />
 				<div className="hidden md:inline-block">
 					<ArrowRight />
 				</div>

@@ -2,115 +2,159 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useInvoiceStore } from '../stores/invoiceStore';
 import InvoiceDialog from '../components/InvoiceDialog';
 import DeleteInvoiceAlert from '../components/DeleteInvoiceAlert';
+import ArrowLeft from '../components/ui/ArrowLeft';
+import StatusBlock from '../components/StatusBlock';
 
 export default function ViewInvoice() {
 	const params = useParams();
 	const navigate = useNavigate();
 	const invoice = useInvoiceStore((s) => s.getInvoice(params.invoiceId));
-	const deleteInvoice = useInvoiceStore((s) => s.deleteInvoice);
-	const markInvoiceAsPaid = useInvoiceStore((s) => s.markInvoiceAsPaid);
 
 	if (!invoice) return <div>Invoice not found</div>;
 
 	return (
-		<div>
-			<div>
-				<div>
-					<button className="cursor-pointer" onClick={() => navigate(-1)}>
-						{/* arrow left */}Go back
-					</button>
-				</div>
-				<div>
-					<div>
-						<p>Status</p>
-						<div>
-							{/* status indicator */}
-							{invoice.status}
+		<div className="grid grid-cols-[minmax(0,576px)] justify-center gap-14 md:grid-cols-[minmax(0,672px)] lg:grid-cols-[minmax(0,730px)]">
+			<div className="grid gap-8 px-6 py-8 md:px-10 md:py-12 lg:px-14 lg:py-16">
+				<button
+					className="hover:**:stroke-02 hover:text-02 hover:dark:text-06 flex cursor-pointer items-center gap-6 text-[15px] font-bold"
+					onClick={() => navigate(-1)}
+				>
+					<ArrowLeft />
+					<span>Go back</span>
+				</button>
+				<div className="grid gap-8 md:gap-6">
+					<div className="dark:bg-03 rounded-lg bg-white p-6 md:flex md:items-center md:justify-between md:px-8 md:py-5">
+						<div className="flex items-center justify-between gap-5">
+							<p className="text-06 dark:text-05">Status</p>
+							<StatusBlock status={invoice.status} />
 						</div>
+						<ButtonGroup
+							invoice={invoice}
+							id={params.invoiceId}
+							navigate={navigate}
+							visibilityStyles="hidden md:flex"
+						/>
 					</div>
-					{/* <div>
-            <button>Edit</button>
-            <button>Delete</button>
-            <button>Mark as Paid</button>
-          </div> */}
-				</div>
-				<div>
-					<div>
-						<div>
-							<p>{invoice.id}</p>
-							<p>{invoice.description}</p>
-						</div>
-						<div>
-							<p>{invoice.senderAddress.street}</p>
-							<p>{invoice.senderAddress.city}</p>
-							<p>{invoice.senderAddress.postCode}</p>
-							<p>{invoice.senderAddress.country}</p>
-						</div>
-					</div>
-					<div>
-						<div>
-							<p>Invoice Date</p>
-							<p>{invoice.createdAt}</p>
-						</div>
-						<div>
-							<p>Payment Due</p>
-							<p>{invoice.paymentDue}</p>
-						</div>
-						<div>
-							<p>Bill To</p>
-							<div>
-								<p>{invoice.clientName}</p>
-								<div>
-									<p>{invoice.clientAddress.street}</p>
-									<p>{invoice.clientAddress.city}</p>
-									<p>{invoice.clientAddress.postCode}</p>
-									<p>{invoice.clientAddress.country}</p>
+					<div className="dark:bg-03 grid gap-10 rounded-lg bg-white p-6 md:gap-12 md:p-8 lg:p-12">
+						<div className="grid gap-8 md:gap-5">
+							<div className="grid items-start gap-8 md:flex md:justify-between">
+								<div className="grid gap-1 md:gap-2">
+									<p className="text-08 text-[15px] font-bold dark:text-white">
+										<span className="text-07 dark:text-06">#</span>
+										{invoice.id}
+									</p>
+									<p className="text-07 dark:text-05 text-[13px]">
+										{invoice.description}
+									</p>
+								</div>
+								<div className="text-07 dark:text-05 grid gap-1 text-[13px] md:text-end">
+									<p>{invoice.senderAddress.street}</p>
+									<p>{invoice.senderAddress.city}</p>
+									<p>{invoice.senderAddress.postCode}</p>
+									<p>{invoice.senderAddress.country}</p>
+								</div>
+							</div>
+							<div className="flex flex-wrap items-start gap-10 md:gap-32">
+								<div className="grid grid-cols-2 grid-rows-2 gap-x-15 gap-y-8 md:gap-x-32">
+									<div className="grid gap-3">
+										<p className="text-07 dark:text-05">Invoice Date</p>
+										<p className="text-[15px] font-bold">{invoice.createdAt}</p>
+									</div>
+									<div className="col-start-2 row-start-1 row-end-3 grid gap-3">
+										<p className="text-07 dark:text-05">Bill To</p>
+										<div className="grid gap-2">
+											<p className="text-[15px] font-bold">
+												{invoice.clientName}
+											</p>
+											<div className="text-07 dark:text-05 grid gap-1">
+												<p>{invoice.clientAddress.street}</p>
+												<p>{invoice.clientAddress.city}</p>
+												<p>{invoice.clientAddress.postCode}</p>
+												<p>{invoice.clientAddress.country}</p>
+											</div>
+										</div>
+									</div>
+									<div className="grid gap-3">
+										<p className="text-07 dark:text-05">Payment Due</p>
+										<p className="text-[15px] font-bold">
+											{invoice.paymentDue}
+										</p>
+									</div>
+								</div>
+								<div className="grid gap-3">
+									<p className="text-07 dark:text-05">Sent to</p>
+									<p className="text-[15px] font-bold">{invoice.clientEmail}</p>
 								</div>
 							</div>
 						</div>
-						<div>
-							<p>Sent to</p>
-							<p>{invoice.clientEmail}</p>
+						<div className="overflow-hidden rounded-lg">
+							<ul className="bg-15 dark:bg-04 grid gap-6 p-6 md:gap-8 md:p-8">
+								{invoice.items.map((item, index) => {
+									return (
+										<li
+											className="flex items-center justify-between text-[15px] font-bold"
+											key={`${index} - ${item}`}
+										>
+											<div className="grid gap-2">
+												<p className="">{item.name}</p>
+												<p className="text-07 dark:text-05">
+													{item.quantity} x £ {item.price}
+												</p>
+											</div>
+											<p>£ {item.total}</p>
+										</li>
+									);
+								})}
+							</ul>
+							<div className="bg-13 dark:bg-08 flex items-center justify-between p-6 text-white md:px-8">
+								<p>Grand Total</p>
+								<p className="text-2xl font-bold">£ {invoice.total}</p>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div>
-					<ul>
-						{invoice.items.map((item, index) => {
-							return (
-								<li key={`${index} - ${item}`}>
-									<div>
-										<p>{item.name}</p>
-										<p>
-											{item.quantity} x £ {item.price}
-										</p>
-									</div>
-									<p>£ {item.total}</p>
-								</li>
-							);
-						})}
-					</ul>
-					<div>
-						<p>Grand Total</p>
-						<p>£ {invoice.total}</p>
-					</div>
-				</div>
 			</div>
-			<div>
-				<InvoiceDialog action="editInvoice" invoice={invoice}>
-					<button>Edit</button>
-				</InvoiceDialog>
-				<DeleteInvoiceAlert
-					id={params.invoiceId}
-					deleteInvoice={deleteInvoice}
-					navigate={navigate}
-				>
-					<button>Delete</button>
-				</DeleteInvoiceAlert>
-				<button onClick={() => markInvoiceAsPaid(params.invoiceId)}>
-					Mark as Paid
+			<ButtonGroup
+				invoice={invoice}
+				id={params.invoiceId}
+				navigate={navigate}
+				visibilityStyles="md:hidden"
+			/>
+		</div>
+	);
+}
+
+function ButtonGroup({ invoice, id, navigate, visibilityStyles }) {
+	const deleteInvoice = useInvoiceStore((s) => s.deleteInvoice);
+	const markInvoiceAsPaid = useInvoiceStore((s) => s.markInvoiceAsPaid);
+
+	return (
+		<div
+			className={
+				'dark:bg-03 flex items-center justify-center gap-2 bg-white p-6 text-[15px] font-bold md:p-0 ' +
+				visibilityStyles
+			}
+		>
+			<InvoiceDialog action="editInvoice" invoice={invoice}>
+				<button className="bg-15 dark:bg-04 hover:bg-05 text-07 dark:text-05 hover:dark:text-07 rounded-3xl px-6 py-4 hover:dark:bg-white">
+					Edit
 				</button>
-			</div>
+			</InvoiceDialog>
+			<DeleteInvoiceAlert
+				id={id}
+				deleteInvoice={deleteInvoice}
+				navigate={navigate}
+			>
+				<button className="bg-09 hover:bg-10 rounded-3xl px-6 py-4 text-white">
+					Delete
+				</button>
+			</DeleteInvoiceAlert>
+			<button
+				className="bg-01 hover:bg-02 rounded-3xl px-6 py-4 text-white"
+				onClick={() => markInvoiceAsPaid(id)}
+			>
+				Mark as Paid
+			</button>
 		</div>
 	);
 }
