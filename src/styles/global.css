@@ -34,6 +34,8 @@
 	--color-10: hsl(0, 100%, 80%);
 	--color-11: hsl(240, 27%, 98%);
 	--color-12: hsl(233, 30%, 11%);
+	--color-13: hsl(231, 20%, 27%);
+	--color-14: hsl(231, 20%, 36%);
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -53,6 +55,6 @@
 }
 
 body {
-	min-width: 320px;
+	min-width: 280px;
 	min-height: 100dvh;
 }
