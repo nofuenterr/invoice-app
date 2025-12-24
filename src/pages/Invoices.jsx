@@ -30,7 +30,7 @@ export default function Invoices() {
 	}, [filters, invoiceList]);
 
 	return (
-		<div className="grid grid-cols-[minmax(0,576px)] content-start justify-center gap-8 overflow-hidden px-6 py-8 md:grid-cols-[minmax(0,672px)] md:gap-14 md:px-12 md:py-15 lg:grid-cols-[minmax(0,730px)] lg:gap-16 lg:px-15 lg:py-20">
+		<div className="grid h-full grid-cols-[minmax(0,576px)] grid-rows-[auto_1fr] content-start justify-center gap-8 overflow-hidden px-6 py-8 md:grid-cols-[minmax(0,672px)] md:gap-14 md:px-12 md:py-15 lg:grid-cols-[minmax(0,730px)] lg:gap-16 lg:px-15 lg:py-20">
 			<InvoicesHeader
 				invoices={invoices}
 				filters={filters}

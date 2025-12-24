@@ -9,7 +9,13 @@ export default function InvoicesHeader({ invoices, filters, handleFilters }) {
 		<div className="flex items-center gap-4.5 md:gap-10">
 			<div className="mr-auto">
 				<h1 className="text-2xl font-bold md:text-4xl">Invoices</h1>
-				<p className="text-06 text-[13px]">{invoices.length} invoices</p>
+				<p className="text-06 text-[13px]">
+					{invoices.length > 1
+						? invoices.length + ' invoices'
+						: invoices.length === 1
+							? invoices.length + ' invoice'
+							: 'No invoices'}
+				</p>
 			</div>
 			<Popover.Root>
 				<Popover.Trigger asChild>
