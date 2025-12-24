@@ -30,7 +30,7 @@ export default function Invoices() {
 	}, [filters, invoiceList]);
 
 	return (
-		<div>
+		<div className="grid gap-8 px-6 py-8">
 			<InvoicesHeader
 				invoices={invoices}
 				filters={filters}
