@@ -136,7 +136,7 @@ function ButtonGroup({ invoice, id, navigate, visibilityStyles }) {
 			}
 		>
 			<InvoiceDialog action="editInvoice" invoice={invoice}>
-				<button className="bg-15 dark:bg-04 hover:bg-05 text-07 dark:text-05 hover:dark:text-07 rounded-3xl px-6 py-4 hover:dark:bg-white">
+				<button className="bg-15 dark:bg-04 hover:bg-05 text-07 dark:text-05 hover:dark:text-07 cursor-pointer rounded-3xl px-6 py-4 hover:dark:bg-white">
 					Edit
 				</button>
 			</InvoiceDialog>
@@ -145,12 +145,12 @@ function ButtonGroup({ invoice, id, navigate, visibilityStyles }) {
 				deleteInvoice={deleteInvoice}
 				navigate={navigate}
 			>
-				<button className="bg-09 hover:bg-10 rounded-3xl px-6 py-4 text-white">
+				<button className="bg-09 hover:bg-10 cursor-pointer rounded-3xl px-6 py-4 text-white">
 					Delete
 				</button>
 			</DeleteInvoiceAlert>
 			<button
-				className="bg-01 hover:bg-02 rounded-3xl px-6 py-4 text-white"
+				className="bg-01 hover:bg-02 cursor-pointer rounded-3xl px-6 py-4 text-white"
 				onClick={() => markInvoiceAsPaid(id)}
 			>
 				Mark as Paid
