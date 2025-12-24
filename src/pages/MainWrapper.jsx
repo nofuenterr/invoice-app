@@ -2,6 +2,9 @@ import { Outlet } from 'react-router-dom';
 import { useForm, FormProvider } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useThemeStore } from '../stores/themeStore';
+import { useEffect } from 'react';
+import HeaderBar from '../components/HeaderBar';
 
 const formSchema = z
 	.object({
@@ -54,6 +57,12 @@ const formSchema = z
 	});
 
 export default function MainWrapper() {
+	const dark = useThemeStore((s) => s.dark);
+
+	useEffect(() => {
+		document.documentElement.classList.toggle('dark', dark);
+	}, [dark]);
+
 	const form = useForm({
 		resolver: zodResolver(formSchema),
 		mode: 'onChange',
@@ -61,7 +70,7 @@ export default function MainWrapper() {
 
 	return (
 		<div>
-			Main Wrapper
+			<HeaderBar />
 			<FormProvider {...form}>
 				<Outlet />
 			</FormProvider>
