@@ -27,6 +27,7 @@
 	--color-03: hsl(233, 31%, 17%);
 	--color-04: hsl(233, 30%, 21%);
 	--color-05: hsl(231, 73%, 93%);
+	--color-05-light: hsla(231, 73%, 93%, 0.057);
 	--color-06: hsl(231, 20%, 61%);
 	--color-07: hsl(231, 37%, 63%);
 	--color-08: hsl(228, 29%, 7%);
@@ -36,7 +37,13 @@
 	--color-12: hsl(233, 30%, 11%);
 	--color-13: hsl(231, 20%, 27%);
 	--color-14: hsl(231, 20%, 36%);
-	--color-white: #ffffff;
+	--color-white: hsl(0, 0%, 100%);
+	--color-paid: hsl(160, 67%, 52%);
+	--color-paid-light: hsla(160, 67%, 52%, 0.057);
+	--color-pending: hsl(34, 100%, 50%);
+	--color-pending-light: hsla(34, 100%, 50%, 0.057);
+	--color-draft: hsl(231, 20%, 27%);
+	--color-draft-light: hsla(231, 20%, 27%, 0.057);
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
