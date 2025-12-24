@@ -34,6 +34,7 @@ export default function ViewInvoice() {
 							id={params.invoiceId}
 							navigate={navigate}
 							visibilityStyles="hidden md:flex"
+							justify="justify-end"
 						/>
 					</div>
 					<ScrollArea>
@@ -126,20 +127,23 @@ export default function ViewInvoice() {
 				id={params.invoiceId}
 				navigate={navigate}
 				visibilityStyles="md:hidden"
+				justify="justify-center"
 			/>
 		</div>
 	);
 }
 
-function ButtonGroup({ invoice, id, navigate, visibilityStyles }) {
+function ButtonGroup({ invoice, id, navigate, visibilityStyles, justify }) {
 	const deleteInvoice = useInvoiceStore((s) => s.deleteInvoice);
 	const markInvoiceAsPaid = useInvoiceStore((s) => s.markInvoiceAsPaid);
 
 	return (
 		<div
 			className={
-				'dark:bg-03 flex w-full items-center justify-center gap-2 bg-white p-6 text-[15px] font-bold md:p-0 ' +
-				visibilityStyles
+				'dark:bg-03 flex w-full items-center gap-2 bg-white p-6 text-[15px] font-bold md:p-0 ' +
+				visibilityStyles +
+				' ' +
+				justify
 			}
 		>
 			<InvoiceDialog action="editInvoice" invoice={invoice}>
