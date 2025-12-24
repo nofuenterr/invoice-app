@@ -69,7 +69,7 @@ export default function MainWrapper() {
 	});
 
 	return (
-		<div className="bg-11 dark:bg-12 text-08 grid lg:grid-cols-[auto_1fr] dark:text-white">
+		<div className="bg-11 dark:bg-12 text-08 grid h-dvh content-start lg:grid-cols-[auto_1fr] dark:text-white">
 			<HeaderBar />
 			<FormProvider {...form}>
 				<Outlet />

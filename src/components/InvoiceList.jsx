@@ -1,16 +1,19 @@
 import { Link } from 'react-router-dom';
 import ArrowRight from './ui/ArrowRight';
 import StatusBlock from './StatusBlock';
+import ScrollArea from './ScrollArea';
 
 export default function InvoiceList({ invoices }) {
 	return (
-		<div>
-			<ul className="grid gap-4">
-				{invoices.map((invoice) => {
-					return <Invoice key={invoice.id} invoice={invoice} />;
-				})}
-			</ul>
-		</div>
+		<ScrollArea>
+			<div>
+				<ul className="grid gap-4">
+					{invoices.map((invoice) => {
+						return <Invoice key={invoice.id} invoice={invoice} />;
+					})}
+				</ul>
+			</div>
+		</ScrollArea>
 	);
 }
 
