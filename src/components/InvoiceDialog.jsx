@@ -219,12 +219,12 @@ export default function InvoiceDialog({ children, action, invoice }) {
 																field.onChange(Number(value))
 															}
 														>
-															<Select.Trigger className="hover:border-02 hover:dark:border-01 border-05 dark:bg-03 dark:border-04 grid justify-start rounded-sm border bg-white px-5 py-4 text-[15px] font-bold focus:ring-2 focus:outline-none">
+															<Select.Trigger className="hover:border-02 hover:dark:border-01 border-05 dark:bg-03 dark:border-04 grid justify-start rounded-sm border bg-white px-5 py-4 text-[15px] font-bold focus:outline-none">
 																<Select.Value placeholder="Select payment term" />
 															</Select.Trigger>
 															<Select.Portal>
 																<Select.Content className="z-50 w-full shadow-md">
-																	<Select.Viewport className="grid w-full gap-6 p-1">
+																	<Select.Viewport className="dark:bg-04 *:not-last:border-b-05 *:not-last:dark:border-b-03 grid w-full rounded-lg bg-white *:not-last:border-b">
 																		<SelectItem value={1} text="Net 1 Day" />
 																		<SelectItem value={7} text="Net 7 Days" />
 																		<SelectItem value={14} text="Net 14 Days" />
@@ -373,7 +373,7 @@ function FormInput({ name, label, placeholder, type = 'text', area }) {
 function SelectItem({ value, text }) {
 	return (
 		<Select.Item
-			className="flex cursor-pointer items-center rounded-sm px-3 py-2 text-sm focus:outline-none data-highlighted:ring-2"
+			className="text-08 hover:text-01 dark:text-05 hover:dark:text-02 focus:text-01 focus:dark:text-02 cursor-pointer px-6 py-4 text-[15px] font-bold focus:outline-none focus-visible:outline-none"
 			value={value}
 		>
 			<Select.ItemText>{text}</Select.ItemText>
