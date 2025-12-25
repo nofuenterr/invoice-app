@@ -11,9 +11,19 @@ import DeleteIcon from './ui/DeleteIcon';
 import ScrollArea from './ScrollArea';
 
 export default function InvoiceDialog({ children, action, invoice }) {
-	const { control, trigger, reset, handleSubmit } = useFormContext();
+	const {
+		control,
+		trigger,
+		reset,
+		handleSubmit,
+		formState: { errors },
+	} = useFormContext();
 	const addInvoice = useInvoiceStore((s) => s.addInvoice);
 	const editInvoice = useInvoiceStore((s) => s.editInvoice);
+
+	Object.entries(errors).forEach((field) => {
+		console.log(field);
+	});
 
 	useEffect(() => {
 		if (action === 'editInvoice' && invoice) reset(mapInvoiceToForm(invoice));
@@ -285,6 +295,17 @@ export default function InvoiceDialog({ children, action, invoice }) {
 										</div>
 									</fieldset>
 								</div>
+
+								{Object.keys(errors).length > 0 ? (
+									<div className="text-09 mt-8">
+										{(Object.keys(errors).length > 1 ||
+											(Object.keys(errors).length === 1 &&
+												!errors?.items?.message)) && (
+											<p>- All fields must be added</p>
+										)}
+										{errors?.items?.message && <p>- An item must be added</p>}
+									</div>
+								) : null}
 							</ScrollArea>
 						</div>
 
@@ -342,12 +363,13 @@ function FormInput({ name, label, placeholder, type = 'text', area }) {
 	} = useFormContext();
 
 	return (
-		<div
-			className={
-				'grid gap-2.5 ' + area + (errors?.[name] ? ' text-09 border-09' : '')
-			}
-		>
-			<div className="flex items-end justify-between gap-2">
+		<div className={'grid gap-2.5 ' + area}>
+			<div
+				className={
+					'flex items-end justify-between gap-2 ' +
+					(errors?.[name] ? ' text-09' : '')
+				}
+			>
 				<Label.Root
 					htmlFor={name}
 					className={
@@ -364,7 +386,10 @@ function FormInput({ name, label, placeholder, type = 'text', area }) {
 				type={type}
 				id={name}
 				placeholder={placeholder}
-				className="border-05 dark:bg-03 dark:border-04 hover:border-02 hover:dark:border-01 min-w-28 rounded-sm border bg-white px-5 py-4 text-[15px] font-bold"
+				className={
+					'border-05 dark:bg-03 dark:border-04 hover:border-02 hover:dark:border-01 min-w-28 rounded-sm border bg-white px-5 py-4 text-[15px] font-bold ' +
+					(errors?.[name] ? 'border-09' : '')
+				}
 			/>
 		</div>
 	);
@@ -397,7 +422,12 @@ function InvoiceItem({ index, remove }) {
 				<Label.Root className="grid gap-4">
 					<p className="text-07 dark:text-06">Item Name</p>
 					<input
-						className="border-05 dark:bg-03 dark:border-04 min-w-25 rounded-sm border bg-white px-5 py-4 text-[15px] font-bold"
+						className={
+							'border-05 dark:bg-03 dark:border-04 min-w-25 rounded-sm border bg-white px-5 py-4 text-[15px] font-bold ' +
+							(errors?.items?.[index]?.name?.message
+								? 'border-09 dark:border-09'
+								: '')
+						}
 						{...register(`items.${index}.name`)}
 						placeholder="Banner Design"
 					/>
@@ -407,7 +437,12 @@ function InvoiceItem({ index, remove }) {
 				<Label.Root className="grid gap-4">
 					<p className="text-07 dark:text-06">Qty.</p>
 					<input
-						className="no-spinner border-05 dark:bg-03 dark:border-04 min-w-11.5 rounded-sm border bg-white px-5 py-4 text-[15px] font-bold"
+						className={
+							'no-spinner border-05 dark:bg-03 dark:border-04 min-w-13 rounded-sm border bg-white px-5 py-4 text-[15px] font-bold ' +
+							(errors?.items?.[index]?.quantity?.message
+								? 'border-09 dark:border-09'
+								: '')
+						}
 						{...register(`items.${index}.quantity`, { valueAsNumber: true })}
 						type="number"
 					/>
@@ -419,7 +454,9 @@ function InvoiceItem({ index, remove }) {
 					<input
 						className={
 							'no-spinner border-05 dark:bg-03 dark:border-04 min-w-25 rounded-sm border bg-white px-5 py-4 text-[15px] font-bold ' +
-							(errors?.[price] ? 'border-09 dark:border-09' : '')
+							(errors?.items?.[index]?.price?.message
+								? 'border-09 dark:border-09'
+								: '')
 						}
 						{...register(`items.${index}.price`, { valueAsNumber: true })}
 						type="number"
