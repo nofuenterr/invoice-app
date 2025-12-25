@@ -38,6 +38,8 @@
 	--color-13: hsl(231, 20%, 27%);
 	--color-14: hsl(231, 20%, 36%);
 	--color-15: hsl(231, 67%, 99%);
+	--color-16: hsl(225, 14%, 53%);
+	--color-17: hsl(231, 67%, 99%);
 	--color-white: hsl(0, 0%, 100%);
 	--color-paid: hsl(160, 67%, 52%);
 	--color-paid-light: hsla(160, 67%, 52%, 0.057);
@@ -45,6 +47,19 @@
 	--color-pending-light: hsla(34, 100%, 50%, 0.057);
 	--color-draft: hsl(231, 20%, 27%);
 	--color-draft-light: hsla(231, 20%, 27%, 0.057);
+	--color-overlay: hsla(0, 0%, 0%, 0.5);
+}
+
+@layer utilities {
+	.no-spinner {
+		appearance: textfield;
+	}
+
+	.no-spinner::-webkit-inner-spin-button,
+	.no-spinner::-webkit-outer-spin-button {
+		appearance: none;
+		margin: 0;
+	}
 }
 
 @custom-variant dark (&:where(.dark, .dark *));

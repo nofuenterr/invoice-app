@@ -8,8 +8,8 @@ import HeaderBar from '../components/HeaderBar';
 
 const formSchema = z
 	.object({
-		createdAt: z.string().min(1, 'This field is required'),
-		description: z.string().min(1, 'This field is required'),
+		createdAt: z.string().min(1, "can't be empty"),
+		description: z.string().min(1, "can't be empty"),
 		paymentTerms: z.union([
 			z.literal(1),
 			z.literal(7),
@@ -21,19 +21,19 @@ const formSchema = z
 			.min(3, 'Your name must be at least 3 characters long'),
 		clientEmail: z.email('Invalid email address'),
 		status: z.enum(['draft', 'pending', 'paid']).default('draft'),
-		senderStreet: z.string().min(1, 'This field is required'),
-		senderCity: z.string().min(1, 'This field is required'),
-		senderPostCode: z.string().min(1, 'This field is required'),
-		senderCountry: z.string().min(1, 'This field is required'),
-		clientStreet: z.string().min(1, 'This field is required'),
-		clientCity: z.string().min(1, 'This field is required'),
-		clientPostCode: z.string().min(1, 'This field is required'),
-		clientCountry: z.string().min(1, 'This field is required'),
+		senderStreet: z.string().min(1, "can't be empty"),
+		senderCity: z.string().min(1, "can't be empty"),
+		senderPostCode: z.string().min(1, "can't be empty"),
+		senderCountry: z.string().min(1, "can't be empty"),
+		clientStreet: z.string().min(1, "can't be empty"),
+		clientCity: z.string().min(1, "can't be empty"),
+		clientPostCode: z.string().min(1, "can't be empty"),
+		clientCountry: z.string().min(1, "can't be empty"),
 		items: z
 			.array(
 				z.object({
 					name: z.string(),
-					quantity: z.number(),
+					quantity: z.number().min(1),
 					price: z.number(),
 				})
 			)
