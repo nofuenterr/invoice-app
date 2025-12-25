@@ -48,6 +48,9 @@
 	--color-draft: hsl(231, 20%, 27%);
 	--color-draft-light: hsla(231, 20%, 27%, 0.057);
 	--color-overlay: hsla(0, 0%, 0%, 0.5);
+	--color-sun-icon: hsl(232, 23%, 61%);
+	--color-moon-icon: var(--color-07);
+	--color-theme-icon-hover: var(--color-05);
 }
 
 @layer utilities {
