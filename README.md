@@ -1,16 +1,30 @@
-## Project Source here (if any)
+## Frontend Mentor
 
-# Project Title here
+# Invoice App
 
-In development...
+A responsive invoice management application built as a solution to the Frontend Mentor Invoice App challenge.
+Users can create, edit, view, and manage invoices with real-time form validation, persistent data storage, and a clean, accessible UI. The app supports both light and dark themes and adapts seamlessly across mobile, tablet, and desktop devices.
 
 ### Features
 
-In development...
+- Create, edit, view, and delete invoices
+- Mark invoices as paid, pending, or draft
+- Form validation using React Hook Form and Zod
+- Confirmation dialog before deleting invoices
+- Persistent invoice data using local storage
+- Fully responsive layout for mobile, tablet, and desktop
+- Light and dark theme toggle
+- Accessible UI components built with Radix UI
+- Centralized state management with Zustand
+- Keyboard-accessible dialogs and controls
+- Scrollable invoice form with fixed action buttons
+- Computed totals and item-based pricing
 
 ### Built With
 
 - React + Vite
+- React Hook Form
+- React Router
 - Tailwind CSS
 - Radix UI
 - Zustand
@@ -20,7 +34,7 @@ In development...
 In order to setup and work on this project on your own, you will need to:
 
 Clone this project:<br>
-`git clone https://github.com/nofuenterr/insert-git-repo-name-here.git`
+`git clone https://github.com/nofuenterr/invoice-app.git`
 
 Once you have cloned this project, you can install the required dependencies by using:<br>
 `npm install`
@@ -35,16 +49,32 @@ Distribution files can be produced using:<br>
 
 This project is for personal use only. I do not own any of the rights for the assets used in this project.
 
-<!-- The product images used are from [League of Items](https://leagueofitems.com/). -->
-<!-- Product data were retrieved from Data Dragon - Riot Developer Portal [(link to docs)](https://developer.riotgames.com/docs/lol). -->
-
 ### Display
 
-In development...
+#### Laptop - Light
+
+![Laptop - Light](public/Laptop-Light.png)
+
+#### Laptop - Dark
+
+![Laptop - Dark](public/Laptop-Dark.png)
+
+#### Tablet
+
+![Tablet](public/Tablet.png)
+
+#### Phone
+
+![Phone](public/Phone.png)
 
 ### To-do
 
-- [-] Insert todo here
+- [ ] Add animations and transitions
+- [ ] Fix icons clipping
+- [ ] Make items list on view invoice a table on medium to large screen sizes
+- [ ] Better content wrapping
+- [ ] Header bar is visible and can be interacted with while invoice dialog is open
+- [ ] Toast feature when adding or deleting invoices
 
 ---
 
