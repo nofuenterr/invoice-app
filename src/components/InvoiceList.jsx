@@ -3,6 +3,7 @@ import ArrowRight from './ui/ArrowRight';
 import StatusBlock from './StatusBlock';
 import ScrollArea from './ScrollArea';
 import { format } from 'date-fns';
+import formatPrice from '../utils/formatPrice';
 
 export default function InvoiceList({ invoices }) {
 	return (
@@ -43,7 +44,7 @@ function Invoice({ invoice }) {
 						Due {format(new Date(invoice.paymentDue), 'dd MMM yyyy')}
 					</p>{' '}
 					<p className="text-[15px] font-bold md:justify-self-end">
-						£ {invoice.total}
+						£ {formatPrice(invoice.total)}
 					</p>
 				</div>
 				<StatusBlock status={invoice.status} />

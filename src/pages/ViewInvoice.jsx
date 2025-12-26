@@ -6,6 +6,7 @@ import ArrowLeft from '../components/ui/ArrowLeft';
 import StatusBlock from '../components/StatusBlock';
 import ScrollArea from '../components/ScrollArea';
 import { format } from 'date-fns';
+import formatPrice from '../utils/formatPrice';
 
 export default function ViewInvoice() {
 	const params = useParams();
@@ -109,14 +110,18 @@ export default function ViewInvoice() {
 														{item.quantity} x £ {item.price}
 													</p>
 												</div>
-												<p className="text-nowrap">£ {item.total}</p>
+												<p className="text-nowrap">
+													£ {formatPrice(item.total)}
+												</p>
 											</li>
 										);
 									})}
 								</ul>
 								<div className="bg-13 dark:bg-08 flex items-center justify-between p-6 text-white md:px-8">
 									<p>Grand Total</p>
-									<p className="text-2xl font-bold">£ {invoice.total}</p>
+									<p className="text-2xl font-bold">
+										£ {formatPrice(invoice.total)}
+									</p>
 								</div>
 							</div>
 						</div>
