@@ -121,7 +121,7 @@ export default function InvoiceDialog({ children, action, invoice }) {
 										<span>New Invoice</span>
 									) : (
 										<span>
-											Edit <span className="text-06">#</span>$
+											Edit <span className="text-06">#</span>
 											{invoice.id.toUpperCase()} Invoice
 										</span>
 									)}

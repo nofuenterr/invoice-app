@@ -16,7 +16,7 @@ export default function ViewInvoice() {
 	if (!invoice) return <div>Invoice not found</div>;
 
 	return (
-		<div className="flex w-full flex-col items-center gap-14 overflow-hidden">
+		<div className="flex w-full flex-col items-center gap-4 overflow-hidden">
 			<div className="grid grid-cols-[minmax(0,576px)] gap-8 overflow-hidden px-6 py-8 md:grid-cols-[minmax(0,672px)] md:px-10 md:py-12 lg:grid-cols-[minmax(0,730px)] lg:px-14 lg:py-16">
 				<button
 					className="hover:**:stroke-02 hover:text-02 hover:dark:text-06 flex cursor-pointer items-center gap-6 text-[15px] font-bold"
