@@ -107,7 +107,7 @@ export default function ViewInvoice() {
 												<div className="grid gap-2">
 													<p className="text-balance">{item.name}</p>
 													<p className="text-07 dark:text-05">
-														{item.quantity} x £ {item.price}
+														{item.quantity} x £ {formatPrice(item.price)}
 													</p>
 												</div>
 												<p className="text-nowrap">
