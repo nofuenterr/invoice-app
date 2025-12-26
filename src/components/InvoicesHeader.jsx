@@ -74,13 +74,15 @@ function CheckboxFilter({ id, label, filters, handleFilters }) {
 				id={id}
 				checked={filters.includes(id)}
 				onCheckedChange={() => handleFilters(id)}
-				className="bg-05 dark:bg-03 data-[state=checked]:bg-01 hover:dark:border-01 flex size-4 items-center justify-center rounded-xs border border-transparent p-1 hover:border-[#979797] data-[state=checked]:border-0"
+				className="bg-05 dark:bg-03 data-[state=checked]:bg-01 hover:dark:border-01 flex size-4 cursor-pointer items-center justify-center rounded-xs border border-transparent p-1 hover:border-[#979797] data-[state=checked]:border-0"
 			>
 				<Checkbox.Indicator className="text-white">
 					<CheckIcon />
 				</Checkbox.Indicator>
 			</Checkbox.Root>
-			<Label.Root htmlFor={id}>{label}</Label.Root>
+			<Label.Root htmlFor={id} className="cursor-pointer">
+				{label}
+			</Label.Root>
 		</fieldset>
 	);
 }

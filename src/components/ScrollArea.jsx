@@ -1,9 +1,11 @@
 import { ScrollArea } from 'radix-ui';
 
-export default function ScrollAreaRoot({ children, flex }) {
+export default function ScrollAreaRoot({ children, flex, padded = false }) {
 	return (
 		<ScrollArea.Root className={'h-full overflow-hidden ' + flex}>
-			<ScrollArea.Viewport className="h-full w-full">
+			<ScrollArea.Viewport
+				className={'h-full w-full ' + (padded ? 'pr-5' : '')}
+			>
 				{children}
 			</ScrollArea.Viewport>
 

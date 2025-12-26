@@ -134,7 +134,7 @@ export default function InvoiceDialog({ children, action, invoice }) {
 								</Dialog.Description>
 							</div>
 
-							<ScrollArea flex="flex-1">
+							<ScrollArea flex="flex-1" padded={true}>
 								<div className="grid gap-17">
 									<div className="grid gap-10">
 										<fieldset className="grid gap-6">
