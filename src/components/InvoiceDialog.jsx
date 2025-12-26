@@ -447,6 +447,9 @@ function InvoiceItem({ index, remove }) {
 						}
 						{...register(`items.${index}.quantity`, { valueAsNumber: true })}
 						type="number"
+						step="1"
+						min="1"
+						inputMode="numeric"
 					/>
 				</Label.Root>
 			</div>
@@ -462,6 +465,9 @@ function InvoiceItem({ index, remove }) {
 						}
 						{...register(`items.${index}.price`, { valueAsNumber: true })}
 						type="number"
+						step="0.01"
+						min="0"
+						inputMode="decimal"
 					/>
 				</Label.Root>
 			</div>
