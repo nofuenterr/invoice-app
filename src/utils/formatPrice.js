@@ -2,7 +2,9 @@ const formatPrice = (price) => {
 	let counter = 0;
 	let parsedPrice = [];
 
-	price
+	const normalizedPrice = Number(price).toFixed(2);
+
+	normalizedPrice
 		.toString()
 		.split('')
 		.reverse()
