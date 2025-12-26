@@ -36,8 +36,8 @@ export default function HeaderBar() {
 			<Avatar.Root className="mr-6 md:mr-8 lg:mr-0 lg:mb-6">
 				<Avatar.Image
 					className="size-8 rounded-full lg:size-10"
-					src="/src/assets/ui/image-avatar.jpg"
-					alt={avatar}
+					src={avatar}
+					alt="Image avatar"
 				/>
 				<Avatar.Fallback
 					className="bg-11 text-02 flex size-full place-content-center text-base leading-none font-medium"
