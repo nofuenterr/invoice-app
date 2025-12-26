@@ -5,6 +5,7 @@ import DeleteInvoiceAlert from '../components/DeleteInvoiceAlert';
 import ArrowLeft from '../components/ui/ArrowLeft';
 import StatusBlock from '../components/StatusBlock';
 import ScrollArea from '../components/ScrollArea';
+import { format } from 'date-fns';
 
 export default function ViewInvoice() {
 	const params = useParams();
@@ -62,7 +63,7 @@ export default function ViewInvoice() {
 										<div className="grid gap-3">
 											<p className="text-07 dark:text-05">Invoice Date</p>
 											<p className="text-[15px] font-bold">
-												{invoice.createdAt}
+												{format(new Date(invoice.createdAt), 'dd MMM yyyy')}
 											</p>
 										</div>
 										<div className="col-start-2 row-start-1 row-end-3 grid gap-3">
@@ -82,7 +83,7 @@ export default function ViewInvoice() {
 										<div className="grid gap-3">
 											<p className="text-07 dark:text-05">Payment Due</p>
 											<p className="text-[15px] font-bold">
-												{invoice.paymentDue}
+												{format(new Date(invoice.paymentDue), 'dd MMM yyyy')}
 											</p>
 										</div>
 									</div>

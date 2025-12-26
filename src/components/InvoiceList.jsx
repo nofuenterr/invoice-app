@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import ArrowRight from './ui/ArrowRight';
 import StatusBlock from './StatusBlock';
 import ScrollArea from './ScrollArea';
+import { format } from 'date-fns';
 
 export default function InvoiceList({ invoices }) {
 	return (
@@ -29,9 +30,8 @@ function Invoice({ invoice }) {
 					{invoice.id}
 				</p>
 				<p className="text-06 dark:text-05 hidden text-[13px] font-medium md:inline">
-					Due {invoice.paymentDue}
+					Due {format(new Date(invoice.paymentDue), 'dd MMM yyyy')}
 				</p>{' '}
-				{/* format date (date.fns) */}
 				<p className="text-06 justify-self-end text-[13px] font-medium md:hidden md:justify-self-start dark:text-white">
 					{invoice.clientName}
 				</p>
@@ -40,9 +40,8 @@ function Invoice({ invoice }) {
 						{invoice.clientName}
 					</p>
 					<p className="text-06 dark:text-05 text-[13px] font-medium md:hidden">
-						Due {invoice.paymentDue}
+						Due {format(new Date(invoice.paymentDue), 'dd MMM yyyy')}
 					</p>{' '}
-					{/* format date (date.fns) */}
 					<p className="text-[15px] font-bold md:justify-self-end">
 						£ {invoice.total}
 					</p>
