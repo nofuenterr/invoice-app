@@ -67,7 +67,7 @@ export default function ViewInvoice() {
 												{format(new Date(invoice.createdAt), 'dd MMM yyyy')}
 											</p>
 										</div>
-										<div className="col-start-2 row-start-1 row-end-3 grid gap-3">
+										<div className="col-start-2 row-start-1 row-end-3 grid content-start gap-3">
 											<p className="text-07 dark:text-05">Bill To</p>
 											<div className="grid gap-2">
 												<p className="text-[15px] font-bold">
