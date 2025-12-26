@@ -24,7 +24,7 @@ function Invoice({ invoice }) {
 		<li className="dark:border-08 hover:border-01 text-08 dark:bg-08 cursor-pointer rounded-lg border border-white bg-white p-6 md:py-4 lg:px-8 dark:text-white">
 			<Link
 				to={`/invoice/${invoice.id}`}
-				className="grid grid-cols-2 gap-y-6 md:grid-cols-[1fr_2fr_4fr_auto_auto] md:items-center md:gap-5"
+				className="grid grid-cols-2 gap-y-6 md:grid-cols-[6.25rem_2fr_4fr_auto_auto] md:items-center md:gap-5"
 			>
 				<p className="text-[15px] font-bold md:mr-2 lg:mr-6">
 					<span className="text-07 dark:text-06">#</span>
