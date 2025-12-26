@@ -111,7 +111,7 @@ export default function InvoiceDialog({ children, action, invoice }) {
 						<div className="grid flex-1 gap-5.5 overflow-hidden px-6 py-8 md:gap-11.5 md:px-14 md:py-15">
 							<div className="grid justify-items-start gap-6.5">
 								<Dialog.Close asChild>
-									<button className="flex items-center gap-6 text-[15px] font-bold md:hidden">
+									<button className="hover:**:stroke-02 hover:text-02 hover:dark:text-06 flex cursor-pointer items-center gap-6 text-[15px] font-bold md:hidden">
 										<ArrowLeft />
 										<span>Go back</span>
 									</button>
