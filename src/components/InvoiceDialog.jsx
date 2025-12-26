@@ -27,7 +27,8 @@ export default function InvoiceDialog({ children, action, invoice }) {
 
 	useEffect(() => {
 		if (action === 'editInvoice' && invoice) reset(mapInvoiceToForm(invoice));
-		if (action === 'addInvoice') reset({ items: [] });
+		if (action === 'addInvoice')
+			reset({ items: [{ name: '', quantity: 1, price: 0, total: 0 }] });
 	}, [action, invoice, reset]);
 
 	const {
@@ -92,7 +93,8 @@ export default function InvoiceDialog({ children, action, invoice }) {
 	return (
 		<Dialog.Root
 			onOpenChange={(open) => {
-				if (!open && action === 'addInvoice') reset({ items: [] });
+				if (!open && action === 'addInvoice')
+					reset({ items: [{ name: '', quantity: 1, price: 0, total: 0 }] });
 			}}
 			className="absolute top-0 left-0"
 		>
