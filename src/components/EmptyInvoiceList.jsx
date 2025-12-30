@@ -1,9 +1,11 @@
+import empty from '../assets/ui/illustration-empty.svg';
+
 export default function EmptyInvoiceList() {
 	return (
 		<div className="mx-auto grid max-w-60 place-content-center justify-items-center gap-10 text-center md:gap-16">
 			<div>
 				<img
-					src="../assets/ui/illustration-empty.svg"
+					src={empty}
 					alt="Empty invoice list illustration"
 				/>
 			</div>
