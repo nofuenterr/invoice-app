@@ -12,7 +12,9 @@ export default function ViewInvoice() {
 	const params = useParams();
 	const navigate = useNavigate();
 	const invoice = useInvoiceStore((s) => s.getInvoice(params.invoiceId));
+	const hasHydrated = useInvoiceStore((s) => s.hasHydrated);
 
+	if (!hasHydrated) return <div>Loading invoice...</div>;
 	if (!invoice) return <div>Invoice not found</div>;
 
 	return (

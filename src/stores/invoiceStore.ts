@@ -36,6 +36,7 @@ export interface Invoice {
 
 export interface InvoiceState {
 	invoiceList: Invoice[];
+	hasHydrated: boolean;
 	addInvoice: (invoice: Invoice) => void;
 	editInvoice: (invoice: Invoice) => void;
 	deleteInvoice: (id: string) => void;
@@ -47,6 +48,7 @@ export const useInvoiceStore = create<InvoiceState>()(
 	persist(
 		immer((set, get) => ({
 			invoiceList: initialInvoices as Invoice[],
+			hasHydrated: false,
 			addInvoice: (invoice: Invoice) =>
 				set((state) => {
 					state.invoiceList.push(invoice);
@@ -73,6 +75,9 @@ export const useInvoiceStore = create<InvoiceState>()(
 		})),
 		{
 			name: 'invoice-storage',
+			onRehydrateStorage: () => () => {
+				useInvoiceStore.setState({ hasHydrated: true });
+			},
 		}
 	)
 );
