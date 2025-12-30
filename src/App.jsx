@@ -9,8 +9,10 @@ function App() {
 		<Router>
 			<Routes>
 				<Route path="/" element={<MainWrapper />} errorElement={<Error />}>
-					<Route index={true} element={<Invoices />} />
-					<Route path="/invoice/:invoiceId" element={<ViewInvoice />} />
+					<Route errorElement={<Error />}>
+						<Route index={true} element={<Invoices />} />
+						<Route path="/invoice/:invoiceId" element={<ViewInvoice />} />
+					</Route>
 				</Route>
 			</Routes>
 		</Router>

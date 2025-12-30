@@ -75,8 +75,19 @@ export const useInvoiceStore = create<InvoiceState>()(
 		})),
 		{
 			name: 'invoice-storage',
-			onRehydrateStorage: () => () => {
-				useInvoiceStore.setState({ hasHydrated: true });
+			onRehydrateStorage: (state) => {
+				console.log('hydration starts');
+
+				return (state, error) => {
+					if (error) {
+						console.log('an error happened during hydration', error);
+					} else {
+						if (state) {
+							state.hasHydrated = true;
+						}
+						console.log('hydration finished');
+					}
+				};
 			},
 		}
 	)
