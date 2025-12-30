@@ -389,7 +389,7 @@ function FormInput({ name, label, placeholder, type = 'text', area }) {
 				id={name}
 				placeholder={placeholder}
 				className={
-					'border-05 dark:bg-03 dark:border-04 hover:border-02 hover:dark:border-01 min-w-28 rounded-sm border bg-white px-5 py-4 text-[15px] font-bold ' +
+					'border-05 dark:bg-03 dark:border-04 hover:border-02 hover:dark:border-01 w-full min-w-28 rounded-sm border bg-white px-5 py-4 text-[15px] font-bold ' +
 					(errors?.[name] ? 'border-09 dark:border-09' : '')
 				}
 			/>
