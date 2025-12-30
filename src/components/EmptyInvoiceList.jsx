@@ -3,7 +3,7 @@ export default function EmptyInvoiceList() {
 		<div className="mx-auto grid max-w-60 place-content-center justify-items-center gap-10 text-center md:gap-16">
 			<div>
 				<img
-					src="/src/assets/ui/illustration-empty.svg"
+					src="../assets/ui/illustration-empty.svg"
 					alt="Empty invoice list illustration"
 				/>
 			</div>
